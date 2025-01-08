@@ -18,17 +18,6 @@ services:
     env_file:
       - ./.env
 
-  frontend:
-    container_name: sfa-frontend
-    build:
-      context: ./frontend/shop-floor-assistance-frontend
-      dockerfile: Dockerfile  
-      args:
-        buildType: build-dc
-    ports:
-      - "80:80"
-    restart: no
-
   backend:
     container_name: sfa-backend
     depends_on:
