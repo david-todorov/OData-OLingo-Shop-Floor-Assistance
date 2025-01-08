@@ -1,0 +1,44 @@
+# version: "3.4"
+
+services:
+
+  database:
+    image: postgres
+    container_name: sfa-database
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+    # - postgres_data:/var/lib/postgresql/data
+    - ./database/data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: no
+    env_file:
+      - ./.env
+
+  frontend:
+    container_name: sfa-frontend
+    build:
+      context: ./frontend/shop-floor-assistance-frontend
+      dockerfile: Dockerfile  
+      args:
+        buildType: build-dc
+    ports:
+      - "80:80"
+    restart: no
+
+  backend:
+    container_name: sfa-backend
+    depends_on:
+      database:
+        condition: service_started
+    build:
+      context: ./backend/shop-floor-assistance-backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: no
+    env_file:
+      - ./.env
