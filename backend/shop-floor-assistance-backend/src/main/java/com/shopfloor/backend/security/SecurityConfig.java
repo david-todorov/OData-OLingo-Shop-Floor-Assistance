@@ -58,6 +58,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Add this line
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/odata/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/editor/**").hasRole("EDITOR")
                         .requestMatchers("/operator/**").hasAnyRole("EDITOR", "OPERATOR")

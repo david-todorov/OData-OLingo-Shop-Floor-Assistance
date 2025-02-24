@@ -1,7 +1,9 @@
 package com.shopfloor.backend.database.repositories;
 
 import com.shopfloor.backend.database.objects.OrderDBO;
+import com.shopfloor.backend.database.objects.ProductDBO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.Optional;
 
@@ -12,7 +14,7 @@ import java.util.Optional;
  * for OrderDBO entities, which represent orders in the database.
  * @author David Todorov (https://github.com/david-todorov)
  */
-public interface OrderRepository extends JpaRepository<OrderDBO, Long> {
+public interface OrderRepository extends JpaRepository<OrderDBO, Long>, JpaSpecificationExecutor<OrderDBO> {
 
     /**
      * Finds an order entity by its ID.

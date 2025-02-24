@@ -10,6 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+
     <groupId>com.uhlmann.shopfloor</groupId>
     <artifactId>shop-floor-assistance-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -87,6 +88,37 @@
             <version>3.3.2</version>
         </dependency>
 
+
+
+        <!-- OData Server API -->
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-server-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <!-- OData Server Core Implementation -->
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-server-core</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <!-- OData Common API -->
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-commons-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <!-- OData Common Core Implementation -->
+        <dependency>
+            <groupId>org.apache.olingo</groupId>
+            <artifactId>odata-commons-core</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+
+        <!-- OData Client API -->
 
     </dependencies>
 
