@@ -27,7 +27,7 @@ public class EquipmentODataMapper implements ODataEntityMapper<EquipmentDBO> {
         equipmentEntity.addProperty(new Property(null, "Name", ValueType.PRIMITIVE, entity.getName()));
         equipmentEntity.addProperty(new Property(null, "Type", ValueType.PRIMITIVE, entity.getType()));
         equipmentEntity.addProperty(new Property(null, "Description", ValueType.PRIMITIVE, entity.getDescription()));
-        equipmentEntity.addProperty(new Property(null,"CreatedBy", ValueType.PRIMITIVE, entity.getCreatedBy()));
+        equipmentEntity.addProperty(new Property(null, "CreatedBy", ValueType.PRIMITIVE, entity.getCreatedBy()));
         equipmentEntity.addProperty(new Property(null, "UpdatedBy", ValueType.PRIMITIVE, entity.getUpdatedBy()));
         equipmentEntity.addProperty(new Property(null, "CreatedAt", ValueType.PRIMITIVE, entity.getCreatedAt()));
         equipmentEntity.addProperty(new Property(null, "UpdatedAt", ValueType.PRIMITIVE, entity.getUpdatedAt()));
@@ -56,7 +56,7 @@ public class EquipmentODataMapper implements ODataEntityMapper<EquipmentDBO> {
             StringBuilder sb = new StringBuilder(ES_EQUIPMENTS_NAME).append("(");
             final Property property = entity.getProperty(idPropertyName);
             sb.append(property.asPrimitive()).append(")");
-            if(navigationName != null) {
+            if (navigationName != null) {
                 sb.append("/").append(navigationName);
 
                 Property navIdProperty = entity.getProperty("Id"); // Adjust this if the ID property has a different name
@@ -88,7 +88,6 @@ public class EquipmentODataMapper implements ODataEntityMapper<EquipmentDBO> {
                 }
             }
         }
-        
 
         // Set inline entity set for navigation link
         navLink.setInlineEntitySet(entityCollection);
@@ -96,6 +95,5 @@ public class EquipmentODataMapper implements ODataEntityMapper<EquipmentDBO> {
         // Add navigation link to the product entity
         equipmentEntity.getNavigationLinks().add(navLink);
     }
-
 
 }

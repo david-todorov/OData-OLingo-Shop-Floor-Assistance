@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -33,12 +32,11 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
     public static final String ES_PRODUCTS_NAME = "Products";
     public static final String ES_EQUIPMENTS_NAME = "Equipments";
     public static final String ES_ORDERS_NAME = "Orders";
-
     @Override
     public CsdlEntityType getEntityType(FullQualifiedName entityTypeName) {
         CsdlEntityType entityType = null;
 
-        if(entityTypeName.equals(ET_ORDER_FQN)){
+        if (entityTypeName.equals(ET_ORDER_FQN)) {
 
             // Basic properties of an Order
             CsdlProperty id = new CsdlProperty().setName("Id")
@@ -110,9 +108,7 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
             entityType.setKey(Arrays.asList(propertyRef));
             entityType.setNavigationProperties(navigationPropertyList);
 
-
-        }
-        else if(entityTypeName.equals(ET_EQUIPMENT_FQN)){
+        } else if (entityTypeName.equals(ET_EQUIPMENT_FQN)) {
 
             //TODO: Basic properties of an Equipment
             CsdlProperty id = new CsdlProperty().setName("Id")
@@ -166,8 +162,7 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
             entityType.setKey(Arrays.asList(propertyRef));
             entityType.setNavigationProperties(navigationPropertyList);
 
-        }
-        else if(entityTypeName.equals(ET_PRODUCT_FQN)){
+        } else if (entityTypeName.equals(ET_PRODUCT_FQN)) {
             //TODO: Basic properties of a Product
             CsdlProperty id = new CsdlProperty().setName("Id")
                     .setType(EdmPrimitiveTypeKind.Int64.getFullQualifiedName());
@@ -254,7 +249,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
         return entityType;
     }
 
-
     @Override
     public CsdlEntitySet getEntitySet(FullQualifiedName entityContainer, String entitySetName) {
         CsdlEntitySet entitySet = null;
@@ -270,8 +264,7 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
                     .setName(ES_ORDERS_NAME)
                     .setType(ET_ORDER_FQN)
                     .setNavigationPropertyBindings(navigationBindings);
-        }
-        else if (entitySetName.equals(ES_EQUIPMENTS_NAME)) {
+        } else if (entitySetName.equals(ES_EQUIPMENTS_NAME)) {
             // Define navigation bindings for Equipments entity set
             List<CsdlNavigationPropertyBinding> navigationBindings = new ArrayList<>();
             navigationBindings.add(new CsdlNavigationPropertyBinding().setPath("Orders").setTarget(ES_ORDERS_NAME));
@@ -280,8 +273,7 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
                     .setName(ES_EQUIPMENTS_NAME)
                     .setType(ET_EQUIPMENT_FQN)
                     .setNavigationPropertyBindings(navigationBindings);
-        }
-        else if (entitySetName.equals(ES_PRODUCTS_NAME)) {
+        } else if (entitySetName.equals(ES_PRODUCTS_NAME)) {
             // Define navigation bindings for Products entity set
             List<CsdlNavigationPropertyBinding> navigationBindings = new ArrayList<>();
             navigationBindings.add(new CsdlNavigationPropertyBinding().setPath("OrdersAsBefore").setTarget(ES_ORDERS_NAME));
@@ -295,8 +287,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
 
         return entitySet;
     }
-
-
 
     @Override
     public CsdlEntityContainer getEntityContainer() {
@@ -313,7 +303,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
 
         return entityContainer;
     }
-
 
     @Override
     public List<CsdlSchema> getSchemas() {
@@ -337,7 +326,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
 
         return schemas;
     }
-
 
     @Override
     public CsdlEntityContainerInfo getEntityContainerInfo(FullQualifiedName entityContainerName) {

@@ -2,7 +2,6 @@ package com.shopfloor.backend.database.repositories;
 
 import com.shopfloor.backend.database.objects.EquipmentDBO;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;

@@ -30,7 +30,9 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
     }
 
     @Override
-    public void readEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType) throws ODataApplicationException, ODataLibraryException {
+    public void readEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType)
+            throws ODataApplicationException,
+            ODataLibraryException {
 
         // 1. retrieve the Entity Type
         List<UriResource> resourcePaths = uriInfo.getUriResourceParts();
@@ -48,12 +50,18 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
     }
 
     @Override
-    public void createEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType, ContentType contentType1) throws ODataApplicationException, ODataLibraryException {
+    public void createEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType, ContentType contentType1)
+            throws
+            ODataApplicationException,
+            ODataLibraryException {
 
     }
 
     @Override
-    public void updateEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType, ContentType contentType1) throws ODataApplicationException, ODataLibraryException {
+    public void updateEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType, ContentType contentType1)
+            throws
+            ODataApplicationException,
+            ODataLibraryException {
 
     }
 

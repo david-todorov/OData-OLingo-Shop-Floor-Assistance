@@ -7,14 +7,12 @@ import com.shopfloor.backend.olingo.business.processors.generics.utils.projectio
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;
-
-
 @Component
 public class ProductEntityProcessor extends ODataEntityProcessor<ProductDBO> {
 
     @Autowired
     public ProductEntityProcessor(JpaSpecificationExecutor<ProductDBO> repository, ProductODataMapper mapper) {
-        super(repository,new ODataProjectionBuilder<ProductDBO>(mapper));
+        super(repository, new ODataProjectionBuilder<ProductDBO>(mapper));
     }
 
 }

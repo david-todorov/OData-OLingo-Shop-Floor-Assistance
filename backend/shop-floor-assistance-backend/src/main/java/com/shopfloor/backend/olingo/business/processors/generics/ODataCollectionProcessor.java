@@ -40,7 +40,10 @@ public class ODataCollectionProcessor<T> implements EntityCollectionProcessor {
 
     @Override
     @Transactional
-    public void readEntityCollection(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType) throws ODataApplicationException, ODataLibraryException {
+    public void readEntityCollection(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType)
+            throws
+            ODataApplicationException,
+            ODataLibraryException {
 
         // The collection to be returned
         EntityCollection toReturnCollection = new EntityCollection();

@@ -2,7 +2,7 @@ package com.shopfloor.backend.olingo.business.processors.generics.utils.projecti
 
 public class SelectProjection {
 
-    public void build(){
+    public void build() {
 
     }
 

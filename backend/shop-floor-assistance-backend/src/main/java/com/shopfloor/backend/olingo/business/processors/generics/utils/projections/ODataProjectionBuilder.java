@@ -8,13 +8,13 @@ import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 
 import java.util.List;
 
-public class ODataProjectionBuilder<T>{
+public class ODataProjectionBuilder<T> {
 
-    ExpandOption expandOption;
+    private ExpandOption  expandOption;
 
-    SelectOption selectOption;
+    private SelectOption selectOption;
 
-    ODataEntityMapper<T> entityMapper;
+    private ODataEntityMapper<T> entityMapper;
 
     private final int MAX_DEPTH = 1;
 

@@ -67,7 +67,7 @@ public class ProductODataMapper implements ODataEntityMapper<ProductDBO> {
 
             final Property property = entity.getProperty(idPropertyName);
             sb.append(property.asPrimitive()).append(")");
-            if(navigationName != null) {
+            if (navigationName != null) {
                 sb.append("/").append(navigationName);
 
                 // If the navigation property has an ID, append it as well
@@ -81,7 +81,6 @@ public class ProductODataMapper implements ODataEntityMapper<ProductDBO> {
             throw new ODataRuntimeException("Unable to create (Atom) id for entity: " + entity, e);
         }
     }
-
 
     private void addOrdersCollectionNavigationProperty(Entity productEntity, String navigationName, List<OrderDBO> orderDBOS, int expandDepth) {
         Link navLink = new Link();
@@ -108,6 +107,5 @@ public class ProductODataMapper implements ODataEntityMapper<ProductDBO> {
         // Add navigation link to the product entity
         productEntity.getNavigationLinks().add(navLink);
     }
-
 
 }

@@ -63,7 +63,7 @@ public class OrderODataMapper implements ODataEntityMapper<OrderDBO> {
             StringBuilder sb = new StringBuilder(ES_ORDERS_NAME).append("(");
             final Property property = entity.getProperty(idPropertyName);
             sb.append(property.asPrimitive()).append(")");
-            if(navigationName != null) {
+            if (navigationName != null) {
                 sb.append("/").append(navigationName);
 
                 Property navIdProperty = entity.getProperty("Id"); // Adjust this if the ID property has a different name

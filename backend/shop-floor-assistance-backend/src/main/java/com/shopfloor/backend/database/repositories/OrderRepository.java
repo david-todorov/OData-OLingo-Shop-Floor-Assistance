@@ -1,7 +1,6 @@
 package com.shopfloor.backend.database.repositories;
 
 import com.shopfloor.backend.database.objects.OrderDBO;
-import com.shopfloor.backend.database.objects.ProductDBO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

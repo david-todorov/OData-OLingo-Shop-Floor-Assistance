@@ -1,20 +1,20 @@
 package com.shopfloor.backend.olingo.presentation;
 
-import com.shopfloor.backend.olingo.business.processors.orders.OrderCollectionProcessor;
-import com.shopfloor.backend.olingo.business.processors.orders.OrderEntityProcessor;
+
 import com.shopfloor.backend.olingo.business.processors.products.ProductCollectionProcessor;
 import com.shopfloor.backend.olingo.business.processors.products.ProductEntityProcessor;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.apache.olingo.commons.api.edmx.EdmxReference;
 import org.apache.olingo.server.api.OData;
 import org.apache.olingo.server.api.ODataHttpHandler;
 import org.apache.olingo.server.api.ServiceMetadata;
-import org.apache.olingo.commons.api.edmx.EdmxReference;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -34,8 +34,7 @@ public class ODataServletConfiguration {
     static class ODataServlet extends HttpServlet {
         private static final long serialVersionUID = 1L;
         private final ApplicationContext applicationContext;
-
-        public ODataServlet(ApplicationContext applicationContext) {
+        ODataServlet(ApplicationContext applicationContext) {
             this.applicationContext = applicationContext;
         }
 
