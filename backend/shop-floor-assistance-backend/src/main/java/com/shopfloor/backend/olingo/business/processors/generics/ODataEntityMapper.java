@@ -12,4 +12,5 @@ public interface ODataEntityMapper<T> {
     EntityCollection mapEntityCollection(Iterable<T> entities, int expandDepth);
 
     URI createEntityId(Entity entity, String idPropertyName, String navigationName);
+
 }

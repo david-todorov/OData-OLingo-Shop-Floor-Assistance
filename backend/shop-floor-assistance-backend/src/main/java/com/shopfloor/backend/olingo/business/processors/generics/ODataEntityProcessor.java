@@ -2,15 +2,25 @@ package com.shopfloor.backend.olingo.business.processors.generics;
 
 import com.shopfloor.backend.olingo.business.processors.generics.utils.projections.ODataProjectionBuilder;
 import com.shopfloor.backend.olingo.business.processors.generics.utils.specifications.ODataSpecificationBuilder;
+import jakarta.transaction.Transactional;
+import org.apache.olingo.commons.api.data.ContextURL;
+import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
+import org.apache.olingo.commons.api.edm.EdmEntityType;
 import org.apache.olingo.commons.api.format.ContentType;
+import org.apache.olingo.commons.api.http.HttpHeader;
+import org.apache.olingo.commons.api.http.HttpStatusCode;
 import org.apache.olingo.server.api.*;
 import org.apache.olingo.server.api.processor.EntityProcessor;
+import org.apache.olingo.server.api.serializer.EntitySerializerOptions;
+import org.apache.olingo.server.api.serializer.ODataSerializer;
+import org.apache.olingo.server.api.serializer.SerializerResult;
 import org.apache.olingo.server.api.uri.UriInfo;
-import org.apache.olingo.server.api.uri.UriParameter;
 import org.apache.olingo.server.api.uri.UriResource;
 import org.apache.olingo.server.api.uri.UriResourceEntitySet;
+import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
 import org.apache.olingo.server.api.uri.queryoption.SelectOption;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
@@ -30,22 +40,64 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
     }
 
     @Override
+    @Transactional
     public void readEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType)
             throws ODataApplicationException,
             ODataLibraryException {
 
-        // 1. retrieve the Entity Type
+        //The OData entity which will be returned
+        Entity toReturnEntity = null;
+
+        //Extracting the root EntitySet
         List<UriResource> resourcePaths = uriInfo.getUriResourceParts();
-        // Note: only in our example we can assume that the first segment is the EntitySet
         UriResourceEntitySet uriResourceEntitySet = (UriResourceEntitySet) resourcePaths.get(0);
         EdmEntitySet edmEntitySet = uriResourceEntitySet.getEntitySet();
+        EdmEntityType edmEntityType = edmEntitySet.getEntityType();
 
-        // 2. retrieve the data from backend
-        List<UriParameter> keyPredicates = uriResourceEntitySet.getKeyPredicates();
-
+        //Extracting the $select and $expand options
         SelectOption selectOption = uriInfo.getSelectOption();
+        ExpandOption expandOption = uriInfo.getExpandOption();
+
+        //SpecificationBuilder helps to dynamically construct a query, using specifications
+        //Building the specifications according to the uriResourceEntitySet
         ODataSpecificationBuilder<T> specificationBuilder = new ODataSpecificationBuilder<>();
-        specificationBuilder.addComposeKey(keyPredicates, uriInfo);
+        Specification<T> specification = specificationBuilder
+                .addComposeKey(uriResourceEntitySet)
+                .build();
+
+        //Retrieving the database entity according to the specifications
+        //Otherwise throwing an exception
+        T dbEntity = this.repository.findOne(specification)
+                .orElseThrow(() -> new ODataApplicationException("Entity not found", HttpStatusCode.NOT_FOUND.getStatusCode(), null));
+
+        //Mapping the Database Entity to OData Entity
+        toReturnEntity = this.projectionBuilder.buildEntityFrom(dbEntity);
+
+
+
+        // 4. serialize
+
+        // we need the property names of the $select, in order to build the context URL
+        String selectList = odata.createUriHelper().buildContextURLSelectList(edmEntityType, expandOption, selectOption);
+        ContextURL contextUrl = ContextURL.with().entitySet(edmEntitySet)
+                .selectList(selectList)
+                .suffix(ContextURL.Suffix.ENTITY).build();
+
+        // make sure that $expand and $select are considered by the serializer
+        // adding the selectOption to the serializerOpts will actually tell the lib to do the job
+        EntitySerializerOptions opts = EntitySerializerOptions.with()
+                .contextURL(contextUrl)
+                .select(selectOption)
+                .expand(expandOption)
+                .build();
+
+        ODataSerializer serializer = this.odata.createSerializer(contentType);
+        SerializerResult serializerResult = serializer.entity(serviceMetadata, edmEntityType, toReturnEntity, opts);
+
+        // 5. configure the response object
+        oDataResponse.setContent(serializerResult.getContent());
+        oDataResponse.setStatusCode(HttpStatusCode.OK.getStatusCode());
+        oDataResponse.setHeader(HttpHeader.CONTENT_TYPE, contentType.toContentTypeString());
 
     }
 
@@ -75,4 +127,5 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
         this.odata = oData;
         this.serviceMetadata = serviceMetadata;
     }
+
 }

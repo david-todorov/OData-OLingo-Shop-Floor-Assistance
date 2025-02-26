@@ -3,6 +3,7 @@ package com.shopfloor.backend.olingo.presentation;
 
 import com.shopfloor.backend.olingo.business.processors.products.ProductCollectionProcessor;
 import com.shopfloor.backend.olingo.business.processors.products.ProductEntityProcessor;
+import com.shopfloor.backend.olingo.business.processors.products.ProductPrimitiveProcessor;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -46,12 +47,16 @@ public class ODataServletConfiguration {
                 ODataHttpHandler handler = odata.createHandler(edm);
 
                 // Retrieve Spring-managed beans instead of manual instantiation
-                handler.register(applicationContext.getBean(ProductEntityProcessor.class));
-                handler.register(applicationContext.getBean(ProductCollectionProcessor.class));
+              handler.register(applicationContext.getBean(ProductEntityProcessor.class));
+              handler.register(applicationContext.getBean(ProductCollectionProcessor.class));
+                handler.register(applicationContext.getBean(ProductPrimitiveProcessor.class));
 
                 //TODO: Register OrderCollectionProcessor if we can not make one general
-             //  handler.register(applicationContext.getBean(OrderCollectionProcessor.class));
-             //  handler.register(applicationContext.getBean(OrderEntityProcessor.class));
+          //     handler.register(applicationContext.getBean(OrderCollectionProcessor.class));
+          //     handler.register(applicationContext.getBean(OrderEntityProcessor.class));
+           //    handler.register(applicationContext.getBean(OrderPrimitiveProcessor.class));
+           //     handler.register(applicationContext.getBean(OrderComplexProcessor.class));
+
 
                 handler.process(req, resp);
             } catch (RuntimeException e) {

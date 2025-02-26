@@ -77,21 +77,14 @@ public class ODataCollectionProcessor<T> implements EntityCollectionProcessor {
         // Retrieve paginated and filtered results from the repository
         List<T> dbEntities = repository.findAll(specification, paging).getContent();
 
-
-
-        // Set the $select and $expand options
-        this.projectionBuilder.addSelect(selectOption);
-        this.projectionBuilder.addExpand(expandOption);
-
         // Build the entity collection from the projection builder
         // Internally, this will call the ODataEntityMapper, which is specific to the entity set
         toReturnCollection = this.projectionBuilder.buildEntityCollectionFrom(dbEntities);
 
 
-
         String entitySetName = uriInfo.getUriResourceParts().get(0).getSegmentValue();
         EdmEntitySet edmEntitySet = serviceMetadata.getEdm().getEntityContainer()
-                .getEntitySet(entitySetName); // Change to your actual entity set name
+                .getEntitySet(entitySetName);
 
         EdmEntityType edmEntityType = edmEntitySet.getEntityType();
 
