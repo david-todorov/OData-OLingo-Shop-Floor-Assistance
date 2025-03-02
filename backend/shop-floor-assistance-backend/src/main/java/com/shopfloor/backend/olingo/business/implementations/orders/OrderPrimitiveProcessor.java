@@ -1,8 +1,8 @@
-package com.shopfloor.backend.olingo.business.processors.orders;
+package com.shopfloor.backend.olingo.business.implementations.orders;
 
 import com.shopfloor.backend.database.objects.OrderDBO;
-import com.shopfloor.backend.olingo.business.processors.generics.ODataPrimitiveProcessor;
-import com.shopfloor.backend.olingo.business.processors.generics.utils.projections.ODataProjectionBuilder;
+import com.shopfloor.backend.olingo.business.generics.processors.ODataPrimitiveProcessor;
+import com.shopfloor.backend.olingo.business.generics.projections.ODataProjectionBuilder;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;
 

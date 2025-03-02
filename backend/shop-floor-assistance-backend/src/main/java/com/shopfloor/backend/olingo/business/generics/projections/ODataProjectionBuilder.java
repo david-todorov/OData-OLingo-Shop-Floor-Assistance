@@ -1,14 +1,20 @@
-package com.shopfloor.backend.olingo.business.processors.generics.utils.projections;
+package com.shopfloor.backend.olingo.business.generics.projections;
 
-import com.shopfloor.backend.olingo.business.processors.generics.ODataEntityMapper;
+import com.shopfloor.backend.olingo.business.generics.ODataEntityMapper;
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.EntityCollection;
+import org.apache.olingo.server.api.uri.queryoption.ExpandOption;
+import org.apache.olingo.server.api.uri.queryoption.SelectOption;
 
 import java.util.List;
 
 public class ODataProjectionBuilder<T> {
 
     private ODataEntityMapper<T> entityMapper;
+
+    private SelectOption selectOption;
+
+    private ExpandOption expandOption;
 
     private final int MAX_DEPTH = 2;
 

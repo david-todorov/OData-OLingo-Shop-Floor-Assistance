@@ -1,4 +1,4 @@
-package com.shopfloor.backend.olingo.business.processors.generics.utils.specifications;
+package com.shopfloor.backend.olingo.business.generics.specifications;
 
 
 import org.apache.olingo.server.api.ODataApplicationException;
@@ -11,10 +11,10 @@ import org.springframework.data.jpa.domain.Specification;
 public class ODataSpecificationBuilder<T> {
 
     private Specification<T> specification;
-    private ExpressionBuilder expressionBuilder;
+    private ExpressionTranslator expressionTranslator;
     public ODataSpecificationBuilder() {
         this.specification = Specification.where(null); // No filters applied initially
-        this.expressionBuilder = new ExpressionBuilder();
+        this.expressionTranslator = new ExpressionTranslator();
     }
 
     public ODataSpecificationBuilder<T> addFilter(FilterOption filterOption) {
@@ -34,7 +34,7 @@ public class ODataSpecificationBuilder<T> {
     }
 
     public ODataSpecificationBuilder<T> addComposeKey(UriResourceEntitySet uriResourceEntitySet) throws ODataApplicationException {
-        Expression expression = this.expressionBuilder.translateExpressionFromEntitySet(uriResourceEntitySet);
+        Expression expression = this.expressionTranslator.translateExpressionFromEntitySet(uriResourceEntitySet);
         if (expression != null) {
             Specification<T> expressionSpecification = new FilterSpecification<T>().build(expression);
             specification = specification.and(expressionSpecification);

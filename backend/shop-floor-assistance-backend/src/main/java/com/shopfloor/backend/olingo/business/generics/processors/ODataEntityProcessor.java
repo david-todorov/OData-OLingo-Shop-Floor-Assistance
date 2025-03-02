@@ -1,7 +1,7 @@
-package com.shopfloor.backend.olingo.business.processors.generics;
+package com.shopfloor.backend.olingo.business.generics.processors;
 
-import com.shopfloor.backend.olingo.business.processors.generics.utils.projections.ODataProjectionBuilder;
-import com.shopfloor.backend.olingo.business.processors.generics.utils.specifications.ODataSpecificationBuilder;
+import com.shopfloor.backend.olingo.business.generics.projections.ODataProjectionBuilder;
+import com.shopfloor.backend.olingo.business.generics.specifications.ODataSpecificationBuilder;
 import jakarta.transaction.Transactional;
 import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.Entity;
@@ -119,6 +119,15 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
 
     @Override
     public void deleteEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo) throws ODataApplicationException, ODataLibraryException {
+
+        //Extracting the root EntitySet
+        List<UriResource> resourcePaths = uriInfo.getUriResourceParts();
+        UriResourceEntitySet uriResourceEntitySet = (UriResourceEntitySet) resourcePaths.get(0);
+
+        ODataSpecificationBuilder<T> specificationBuilder = new ODataSpecificationBuilder<>();
+
+        Specification<T> specification = specificationBuilder.addComposeKey(uriResourceEntitySet).build();
+
 
     }
 

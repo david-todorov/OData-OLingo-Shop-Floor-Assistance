@@ -1,4 +1,4 @@
-package com.shopfloor.backend.olingo.business.processors.generics.utils.specifications;
+package com.shopfloor.backend.olingo.business.generics.specifications;
 
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
 import org.apache.olingo.commons.api.edm.EdmEntityType;
@@ -19,7 +19,7 @@ import org.apache.olingo.server.core.uri.queryoption.expression.MemberImpl;
 
 import java.util.List;
 
-public class ExpressionBuilder {
+public class ExpressionTranslator {
 
     public Expression translateExpressionFromEntitySet(UriResourceEntitySet uriResourceEntitySet) throws ODataApplicationException  {
 

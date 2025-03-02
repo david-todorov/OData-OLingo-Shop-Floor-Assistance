@@ -1,8 +1,8 @@
-package com.shopfloor.backend.olingo.business.processors.generics;
+package com.shopfloor.backend.olingo.business.generics.processors;
 
-import com.shopfloor.backend.olingo.business.processors.generics.utils.paginations.ODataPaginationBuilder;
-import com.shopfloor.backend.olingo.business.processors.generics.utils.projections.ODataProjectionBuilder;
-import com.shopfloor.backend.olingo.business.processors.generics.utils.specifications.ODataSpecificationBuilder;
+import com.shopfloor.backend.olingo.business.generics.paginations.ODataPaginationBuilder;
+import com.shopfloor.backend.olingo.business.generics.projections.ODataProjectionBuilder;
+import com.shopfloor.backend.olingo.business.generics.specifications.ODataSpecificationBuilder;
 import org.apache.olingo.commons.api.data.ContextURL;
 import org.apache.olingo.commons.api.data.EntityCollection;
 import org.apache.olingo.commons.api.edm.EdmEntitySet;
@@ -56,13 +56,14 @@ public class ODataCollectionProcessor<T> implements EntityCollectionProcessor {
         SelectOption selectOption = uriInfo.getSelectOption();
         ExpandOption expandOption = uriInfo.getExpandOption();
         CountOption countOption = uriInfo.getCountOption();
+        FormatOption formatOption = uriInfo.getFormatOption();
 
         // Build specifications and pagination
-        ODataSpecificationBuilder<T> specificationBuilder = new ODataSpecificationBuilder<>();
+        ODataSpecificationBuilder<T> queryBuilder = new ODataSpecificationBuilder<>();
         ODataPaginationBuilder paginationBuilder = new ODataPaginationBuilder();
 
         // This reflects the $filter, $orderby
-        Specification<T> specification = specificationBuilder
+        Specification<T> specification = queryBuilder
                 .addFilter(filterOption)
                 .addOrderBy(orderByOption)
                 .build();

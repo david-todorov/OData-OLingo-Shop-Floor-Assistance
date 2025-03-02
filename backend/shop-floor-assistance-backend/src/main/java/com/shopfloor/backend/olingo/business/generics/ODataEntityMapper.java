@@ -1,4 +1,4 @@
-package com.shopfloor.backend.olingo.business.processors.generics;
+package com.shopfloor.backend.olingo.business.generics;
 
 import org.apache.olingo.commons.api.data.Entity;
 import org.apache.olingo.commons.api.data.EntityCollection;

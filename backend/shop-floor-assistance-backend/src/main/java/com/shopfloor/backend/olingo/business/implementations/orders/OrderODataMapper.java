@@ -1,11 +1,11 @@
-package com.shopfloor.backend.olingo.business.processors.orders;
+package com.shopfloor.backend.olingo.business.implementations.orders;
 
 import com.shopfloor.backend.database.objects.EquipmentDBO;
 import com.shopfloor.backend.database.objects.OrderDBO;
 import com.shopfloor.backend.database.objects.ProductDBO;
-import com.shopfloor.backend.olingo.business.processors.equipments.EquipmentODataMapper;
-import com.shopfloor.backend.olingo.business.processors.generics.ODataEntityMapper;
-import com.shopfloor.backend.olingo.business.processors.products.ProductODataMapper;
+import com.shopfloor.backend.olingo.business.generics.ODataEntityMapper;
+import com.shopfloor.backend.olingo.business.implementations.equipments.EquipmentODataMapper;
+import com.shopfloor.backend.olingo.business.implementations.products.ProductODataMapper;
 import com.shopfloor.backend.olingo.presentation.EdmProvider;
 import org.apache.olingo.commons.api.Constants;
 import org.apache.olingo.commons.api.data.*;

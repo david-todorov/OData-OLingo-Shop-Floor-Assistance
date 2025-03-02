@@ -1,4 +1,4 @@
-package com.shopfloor.backend.olingo.business.processors.generics.utils.paginations;
+package com.shopfloor.backend.olingo.business.generics.paginations;
 
 import org.apache.olingo.server.api.uri.queryoption.SkipOption;
 import org.apache.olingo.server.api.uri.queryoption.TopOption;

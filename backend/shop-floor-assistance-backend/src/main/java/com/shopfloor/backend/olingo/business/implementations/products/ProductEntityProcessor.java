@@ -1,9 +1,9 @@
-package com.shopfloor.backend.olingo.business.processors.products;
+package com.shopfloor.backend.olingo.business.implementations.products;
 
 
 import com.shopfloor.backend.database.objects.ProductDBO;
-import com.shopfloor.backend.olingo.business.processors.generics.ODataEntityProcessor;
-import com.shopfloor.backend.olingo.business.processors.generics.utils.projections.ODataProjectionBuilder;
+import com.shopfloor.backend.olingo.business.generics.processors.ODataEntityProcessor;
+import com.shopfloor.backend.olingo.business.generics.projections.ODataProjectionBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Component;

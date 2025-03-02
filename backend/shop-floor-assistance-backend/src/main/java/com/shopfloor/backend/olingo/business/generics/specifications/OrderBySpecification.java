@@ -1,4 +1,4 @@
-package com.shopfloor.backend.olingo.business.processors.generics.utils.specifications;
+package com.shopfloor.backend.olingo.business.generics.specifications;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.Order;
