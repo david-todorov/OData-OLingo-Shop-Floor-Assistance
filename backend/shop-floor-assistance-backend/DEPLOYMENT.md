@@ -6,6 +6,7 @@
 - **Java**: 17
 - **Spring Boot**: 3.3.4
 - **Maven**: 3.9.9
+- **Olingo**: 5.0.0
 
 ## Running the Application
 
@@ -23,7 +24,7 @@ Your application requires the following environment variables for proper configu
 ### Step 2: Navigate to the root of the backend
 
 ```bash
-cd ~/path/to/shop-floor-assistance/backend/shop-floor-assistance-backend
+cd ~/path/to/OData-OLingo-Shop-Floor-Assistance/backend/shop-floor-assistance-backend
 ```
 
 ### Step 3: Install Dependencies

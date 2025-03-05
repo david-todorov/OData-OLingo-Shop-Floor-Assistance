@@ -1,10 +1,9 @@
-# shop-floor-assistance
+# [Shop Floor Assistance](https://github.com/david-todorov/shop-floor-assistance) enhanced with [OData](https://www.odata.org/) developed by [Olingo](https://olingo.apache.org/)
 
-Project for developing operator guides and assistance tools for pharmaceutical production lines.
 
-## OData-SFA
+## OData-Shop-Floor-Assistance
 
-This enhancement integrates OData (Open Data Protocol) into the Shop Floor Assistance project to enable seamless and standardized data access. OData is an open protocol for building and consuming RESTful APIs, widely recognized for its powerful query capabilities and interoperability with diverse data sources. The implementation uses OLingo to adhere to the OData standard.
+This enhancement integrates OData (Open Data Protocol) into the [Shop Floor Assistance](https://github.com/david-todorov/shop-floor-assistance) to enable seamless and standardized data access. OData is an open protocol for building and consuming RESTful APIs, widely recognized for its powerful query capabilities and interoperability with diverse data sources. The implementation uses OLingo to adhere to the OData standard.
 
 ## Docker
 
@@ -80,9 +79,9 @@ To run the backend and database applications using Docker Compose, follow these 
 ## API Documentation
 
 For detailed API documentation, refer to the following files:
-- `API_DESCRIPTION.md` for the standard API.
-- `ODATA_API_DESCRIPTION.md` for the extended new OData API.
+- [API_DESCRIPTION.md](backend/shop-floor-assistance-backend/API_DESCRIPTION.md) for the standard API.
+- [ODATA_API_DESCRIPTION.md](backend/shop-floor-assistance-backend/ODATA_API_DESCRIPTION.md) for the extended new OData API.
 
 ## Running the Backend
 
-For detailed instructions on running the backend, refer to the `DEPLOYMENT.md` file.
+For detailed instructions on running the backend, refer to the [DEPLOYMENT.md](backend/shop-floor-assistance-backend/DEPLOYMENT.md) file.
