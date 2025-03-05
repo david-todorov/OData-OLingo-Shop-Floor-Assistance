@@ -35,6 +35,7 @@ public class FilterSpecification<T> {
 
     /**
      * Builds a JPA Specification for filtering results based on the provided expression.
+     * Recursively processes the expression tree using PostOrder traversal.
      *
      * @param expression the expression to be processed into a JPA Specification
      * @return a JPA Specification with the filter applied
@@ -43,6 +44,14 @@ public class FilterSpecification<T> {
         return processExpression(expression);
     }
 
+    /**
+     * Processes the given OData expression and converts it into a JPA Specification.
+     * Recursively processes the expression tree using PostOrder traversal.
+     *
+     * @param expression the OData expression to be processed
+     * @return a JPA Specification representing the given expression
+     * @throws IllegalArgumentException if the expression type is unsupported
+     */
     private Specification<T> processExpression(Expression expression) {
         if (expression instanceof Binary) {
             return handleBinaryExpression((Binary) expression);

@@ -71,9 +71,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
             CsdlPropertyRef propertyRef = new CsdlPropertyRef();
             propertyRef.setName("Id");
 
-            //TODO Navigation properties
-
-            //TODO: "ProductBefore" as Product, One to One
             List<CsdlNavigationProperty> navigationPropertyList = new ArrayList<CsdlNavigationProperty>();
             CsdlNavigationProperty productBefore = new CsdlNavigationProperty()
                     .setName("ProductBefore")
@@ -82,7 +79,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
                     .setPartner("OrdersAsBefore");
             navigationPropertyList.add(productBefore);
 
-            //TODO: "ProductAfter" as Product, One to One
             CsdlNavigationProperty productAfter = new CsdlNavigationProperty()
                     .setName("ProductAfter")
                     .setType(ET_PRODUCT_FQN)
@@ -90,7 +86,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
                     .setPartner("OrdersAsAfter");
             navigationPropertyList.add(productAfter);
 
-            //TODO: "Equipments" as Equipment, Many to Many
             CsdlNavigationProperty equipmentsNavProp = new CsdlNavigationProperty()
                     .setName("Equipments")          // Navigation property in Order
                     .setType(ET_EQUIPMENT_FQN)      // Points to Equipment entity
@@ -118,7 +113,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
 
         } else if (entityTypeName.equals(ET_EQUIPMENT_FQN)) {
 
-            //TODO: Basic properties of an Equipment
             CsdlProperty id = new CsdlProperty().setName("Id")
                     .setType(EdmPrimitiveTypeKind.Int64.getFullQualifiedName());
             CsdlProperty equipmentNumber = new CsdlProperty().setName("EquipmentNumber")
@@ -171,7 +165,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
             entityType.setNavigationProperties(navigationPropertyList);
 
         } else if (entityTypeName.equals(ET_PRODUCT_FQN)) {
-            //TODO: Basic properties of a Product
             CsdlProperty id = new CsdlProperty().setName("Id")
                     .setType(EdmPrimitiveTypeKind.Int64.getFullQualifiedName());
             CsdlProperty productNumber = new CsdlProperty().setName("ProductNumber")
@@ -207,9 +200,6 @@ public class EdmProvider extends CsdlAbstractEdmProvider {
             propertyRefProductNumber.setName("ProductNumber");
 
 
-
-
-            //TODO Navigation properties
             List<CsdlNavigationProperty> navigationPropertyList = new ArrayList<CsdlNavigationProperty>();
 
             CsdlNavigationProperty ordersAsBefore = new CsdlNavigationProperty()

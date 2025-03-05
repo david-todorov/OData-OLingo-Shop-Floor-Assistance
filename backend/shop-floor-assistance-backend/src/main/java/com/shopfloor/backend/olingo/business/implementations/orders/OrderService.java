@@ -100,11 +100,6 @@ public class OrderService implements ODataService<OrderDBO> {
         orderDBO.setCreatedBy(creatorId);
         orderDBO.setCreatedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
 
-        //TODO: ProductAfter
-        //TODO: ProductBefore
-        //TODO: EquipmentList
-
-
         return orderDBO;
     }
 
@@ -125,10 +120,6 @@ public class OrderService implements ODataService<OrderDBO> {
 
         targetDBO.setUpdatedBy(updaterId);
         targetDBO.setUpdatedAt(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
-
-        //TODO: ProductAfter
-        //TODO: ProductBefore
-        //TODO: EquipmentList
 
         return targetDBO;
     }
