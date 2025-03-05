@@ -7,7 +7,6 @@ import org.apache.olingo.server.api.uri.queryoption.search.SearchTerm;
 import org.apache.olingo.server.api.uri.queryoption.search.SearchUnary;
 import org.springframework.data.jpa.domain.Specification;
 
-
 /**
  * A generic class for building JPA Specifications based on OData search options.
  * This class supports adding search terms, unary expressions, and binary expressions.
@@ -19,20 +18,18 @@ import org.springframework.data.jpa.domain.Specification;
  */
 public class SearchSpecification<T> {
 
-    public Specification<T> build(SearchOption searchOption){
+    public Specification<T> build(SearchOption searchOption) {
         SearchExpression searchExpression = searchOption.getSearchExpression();
 
         return processExpression(searchExpression);
     }
 
-    private Specification<T> processExpression(SearchExpression searchExpression){
-        if (searchExpression.isSearchBinary()){
+    private Specification<T> processExpression(SearchExpression searchExpression) {
+        if (searchExpression.isSearchBinary()) {
             return handleBinarySearchExpression((SearchBinary) searchExpression);
-        }
-        else if(searchExpression.isSearchUnary()){
+        } else if (searchExpression.isSearchUnary()) {
             return handleUnaryExpression((SearchUnary) searchExpression);
-        }
-        else if(searchExpression.isSearchTerm()){
+        } else if (searchExpression.isSearchTerm()) {
             return handleTermExpression((SearchTerm) searchExpression);
         }
         throw new IllegalArgumentException("Unsupported search expression type: " + searchExpression.getClass());
@@ -45,8 +42,6 @@ public class SearchSpecification<T> {
 
         throw new UnsupportedOperationException("Not @search option implemented yet");
     }
-
-
 
     private Specification<T> handleUnaryExpression(SearchUnary searchExpression) {
         return null;

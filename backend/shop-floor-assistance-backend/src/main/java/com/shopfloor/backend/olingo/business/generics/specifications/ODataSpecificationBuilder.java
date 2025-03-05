@@ -78,8 +78,8 @@ public class ODataSpecificationBuilder<T> {
      * @param searchOption the search option to be added
      * @return the updated ODataSpecificationBuilder instance
      */
-    public ODataSpecificationBuilder<T> addSearchOption(SearchOption searchOption){
-        if (searchOption != null){
+    public ODataSpecificationBuilder<T> addSearchOption(SearchOption searchOption) {
+        if (searchOption != null) {
             Specification<T> searchSpecification = new SearchSpecification<T>().build(searchOption);
             searchSpecification = specification.and(searchSpecification);
         }

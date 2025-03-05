@@ -42,7 +42,7 @@ public class ODataServletConfiguration {
 
     @Bean
     public ServletRegistrationBean<HttpServlet> odataServlet() {
-        return new ServletRegistrationBean<>(new ODataServlet(applicationContext), BASE_URL+"/*");
+        return new ServletRegistrationBean<>(new ODataServlet(applicationContext), BASE_URL + "/*");
     }
 
     static class ODataServlet extends HttpServlet {

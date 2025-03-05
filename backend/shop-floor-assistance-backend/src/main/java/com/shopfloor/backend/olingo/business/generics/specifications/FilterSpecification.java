@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
  */
 public class FilterSpecification<T> {
 
-
     /**
      * Builds a JPA Specification for filtering results based on the provided FilterOption.
      *
@@ -33,7 +32,6 @@ public class FilterSpecification<T> {
         Expression expression = filterOption.getExpression();
         return processExpression(expression);
     }
-
 
     /**
      * Builds a JPA Specification for filtering results based on the provided expression.

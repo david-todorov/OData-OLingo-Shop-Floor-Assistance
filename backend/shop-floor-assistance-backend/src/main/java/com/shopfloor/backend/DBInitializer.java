@@ -53,17 +53,17 @@ public class DBInitializer {
     @PostConstruct
     public void init() {
 
-        if(!roleRepository.existsByName(Role.OPERATOR)){
+        if (!roleRepository.existsByName(Role.OPERATOR)) {
             RoleDBO operatorRole = new RoleDBO(Role.OPERATOR);
             roleRepository.save(operatorRole);
         }
 
-        if(!roleRepository.existsByName(Role.EDITOR)){
+        if (!roleRepository.existsByName(Role.EDITOR)) {
             RoleDBO editorRole = new RoleDBO(Role.EDITOR);
             roleRepository.save(editorRole);
         }
 
-        if(!roleRepository.existsByName(Role.OLINGO)){
+        if (!roleRepository.existsByName(Role.OLINGO)) {
             RoleDBO olingoRole = new RoleDBO(Role.OLINGO);
             roleRepository.save(olingoRole);
         }
@@ -84,6 +84,7 @@ public class DBInitializer {
             userRepository.save(editor);
         }
 
+        //Currently, the Olingo user is not used in the application.
         if (!userRepository.existsByUsername("olingo")) {
             UserDBO olingo = new UserDBO("olingo", passwordEncoder.encode("olingo"));
             olingo.getRoles().add(roleRepository.findByName(Role.OLINGO));
