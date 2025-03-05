@@ -19,8 +19,21 @@ import org.apache.olingo.server.core.uri.queryoption.expression.MemberImpl;
 
 import java.util.List;
 
+/**
+ * A class responsible for translating OData expressions from an entity set.
+ * @author David Todorov (https://github.com/david-todorov)
+ */
 public class ExpressionTranslator {
 
+    /**
+     * Translates OData expressions from an entity set into a combined expression.
+     * Represents the primary key of the entity set as a combined expression.
+     * Or composite key if the entity set has multiple key properties.
+     *
+     * @param uriResourceEntitySet the entity set containing the OData expressions
+     * @return the combined OData expression
+     * @throws ODataApplicationException if the key parameters are empty or null
+     */
     public Expression translateExpressionFromEntitySet(UriResourceEntitySet uriResourceEntitySet) throws ODataApplicationException  {
 
         List<UriParameter> keyParams = uriResourceEntitySet.getKeyPredicates();

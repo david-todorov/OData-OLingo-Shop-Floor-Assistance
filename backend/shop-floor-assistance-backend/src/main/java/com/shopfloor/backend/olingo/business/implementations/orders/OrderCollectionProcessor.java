@@ -1,18 +1,31 @@
 package com.shopfloor.backend.olingo.business.implementations.orders;
 
 import com.shopfloor.backend.database.objects.OrderDBO;
-import com.shopfloor.backend.database.repositories.OrderRepository;
 import com.shopfloor.backend.olingo.business.generics.processors.ODataCollectionProcessor;
-import com.shopfloor.backend.olingo.business.generics.projections.ODataProjectionBuilder;
+import com.shopfloor.backend.olingo.database.repositories.OrderODataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Processor for handling collections of OrderDBO entities.
+ * Extends the ODataCollectionProcessor to provide specific functionality for OrderDBO.
+ * This class provides concrete implementations for the abstract methods of the ODataCollectionProcessor.
+ * For handling OrderDBO entities, the OrderODataRepository and OrderService are used.
+ *
+ * @author David Todorov (https://github.com/david-todorov)
+ */
 @Component
 public class OrderCollectionProcessor extends ODataCollectionProcessor<OrderDBO> {
 
+    /**
+     * Constructor for the OrderCollectionProcessor.
+     *
+     * @param repository the OrderODataRepository used for querying the database
+     * @param service the OrderService used for processing the data
+     */
     @Autowired
-    public OrderCollectionProcessor(OrderRepository repository, OrderODataMapper mapper) {
-        super(repository, new ODataProjectionBuilder<OrderDBO>(mapper));
+    public OrderCollectionProcessor(OrderODataRepository repository, OrderService service) {
+        super(repository, service);
     }
 
 }

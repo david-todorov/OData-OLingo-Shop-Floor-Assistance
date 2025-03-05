@@ -50,10 +50,15 @@ public class EditorController {
      * @param newOrder the new order to create
      * @return the created EditorOrderTO object
      */
-    @PostMapping("orders")
+/*    @PostMapping("orders")
     @ResponseStatus(HttpStatus.CREATED)
     public EditorOrderTO createOrder(@Valid @RequestBody EditorOrderTO newOrder) {
         return this.editorService.addOrder(newOrder);
+    }*/
+    @PostMapping("orders")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createOrder(@RequestBody List<@Valid EditorOrderTO> newOrders) {
+        newOrders.forEach(this.editorService::addOrder);
     }
 
     /**
@@ -109,10 +114,15 @@ public class EditorController {
      * @param newProduct the new product to create
      * @return the created EditorProductTO object
      */
-    @PostMapping("products")
+/*    @PostMapping("products")
     @ResponseStatus(HttpStatus.CREATED)
     public EditorProductTO createProduct(@Valid @RequestBody EditorProductTO newProduct) {
         return this.editorService.addProduct(newProduct);
+    }*/
+    @PostMapping("products")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createProduct( @RequestBody List<@Valid EditorProductTO> newProducts) {
+        newProducts.forEach(this.editorService::addProduct);
     }
 
     /**
@@ -168,10 +178,15 @@ public class EditorController {
      * @param newEquipment the new equipment to create
      * @return the created EditorEquipmentTO object
      */
-    @PostMapping("equipment")
+/*    @PostMapping("equipment")
     @ResponseStatus(HttpStatus.CREATED)
     public EditorEquipmentTO createEquipment(@Valid @RequestBody EditorEquipmentTO newEquipment) {
         return this.editorService.addEquipment(newEquipment);
+    }*/
+    @PostMapping("equipment")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createEquipment(@RequestBody List<@Valid EditorEquipmentTO> newEquipments) {
+        newEquipments.forEach(this.editorService::addEquipment);
     }
 
     /**

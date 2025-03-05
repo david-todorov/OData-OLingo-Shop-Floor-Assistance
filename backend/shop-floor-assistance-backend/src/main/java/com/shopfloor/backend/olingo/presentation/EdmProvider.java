@@ -8,6 +8,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The EdmProvider class is used to define the metadata of the OData service.
+ * It provides the Entity Types, Entity Sets, and Navigation Properties
+ * The metadata is used by the OData service to describe the structure of the data.
+ *
+ * This example demonstrates the metadata for the ShopFloor OData service.
+ * @Author David Todorov (https://github.com/david-todorov)
+ */
 @Component
 public class EdmProvider extends CsdlAbstractEdmProvider {
 

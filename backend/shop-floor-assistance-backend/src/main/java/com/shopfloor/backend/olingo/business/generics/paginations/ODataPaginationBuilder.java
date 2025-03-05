@@ -5,7 +5,14 @@ import org.apache.olingo.server.api.uri.queryoption.TopOption;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+/**
+ * A builder class for creating pagination configurations for OData queries.
+ * Implements the Pageable interface to provide pagination details.
+ * Represent $skip and $top options in OData.
+ * @author David Todorov (https://github.com/david-todorov)
+ */
 public class ODataPaginationBuilder implements Pageable {
+
 
     private int limit;
     private int offset;
@@ -19,7 +26,13 @@ public class ODataPaginationBuilder implements Pageable {
         this.offset = DEFAULT_OFFSET;
     }
 
-    // Add TopOption for the limit
+    /**
+     * Adds the $top option to the pagination configuration.
+     *
+     * @param topOption the $top option specifying the maximum number of records to return
+     * @return the ODataPaginationBuilder instance for method chaining
+     * @throws IllegalArgumentException if the top value is less than or equal to 0
+     */
     public ODataPaginationBuilder addTopOption(TopOption topOption) {
         if (topOption != null) {
             if (topOption.getValue() <= 0) {
@@ -30,7 +43,13 @@ public class ODataPaginationBuilder implements Pageable {
         return this; // Return the builder itself for method chaining
     }
 
-    // Add SkipOption for the offset
+    /**
+     * Adds the $skip option to the pagination configuration.
+     *
+     * @param skipOption the $skip option specifying the number of records to skip
+     * @return the ODataPaginationBuilder instance for method chaining
+     * @throws IllegalArgumentException if the skip value is less than 0
+     */
     public ODataPaginationBuilder addSkipOption(SkipOption skipOption) {
         if (skipOption != null) {
             if (skipOption.getValue() < 0) {
@@ -41,7 +60,11 @@ public class ODataPaginationBuilder implements Pageable {
         return this; // Return the builder itself for method chaining
     }
 
-    // Build the Pageable object (finalized pagination configuration)
+    /**
+     * Builds the Pageable object with the current pagination configuration.
+     *
+     * @return the Pageable object representing the pagination configuration
+     */
     public Pageable build() {
         return this; // Return the current instance as Pageable
     }

@@ -13,5 +13,10 @@ public enum Role {
     /**
      * Role for users who can operate the system.
      */
-    OPERATOR
+    OPERATOR,
+
+    /**
+     * Role for users who can access OData endpoints
+     */
+    OLINGO
 }

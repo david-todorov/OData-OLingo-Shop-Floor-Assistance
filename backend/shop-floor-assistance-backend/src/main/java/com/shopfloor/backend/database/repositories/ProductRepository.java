@@ -3,7 +3,6 @@ package com.shopfloor.backend.database.repositories;
 import com.shopfloor.backend.database.objects.ProductDBO;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.Optional;
  * Provides methods for performing CRUD operations and custom queries on product data.
  * @author David Todorov (https://github.com/david-todorov)
  */
-public interface ProductRepository extends JpaRepository<ProductDBO, Long>, JpaSpecificationExecutor<ProductDBO> {
+public interface ProductRepository extends JpaRepository<ProductDBO, Long> {
 
     /**
      * Finds a product entity by its product number.

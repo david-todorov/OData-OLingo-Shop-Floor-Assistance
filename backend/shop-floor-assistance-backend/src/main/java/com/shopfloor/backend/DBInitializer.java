@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * This class initializes the database with test users and roles.
- * It ensures that two roles (OPERATOR and EDITOR) and their corresponding users are created.
+ * It ensures that three roles (OPERATOR and EDITOR) and their corresponding users are created.
  *
  * Note: If you add a new user and a new role for them, follow these steps:
  * 1. Create the users.
@@ -53,19 +53,19 @@ public class DBInitializer {
     @PostConstruct
     public void init() {
 
-        // Check if both roles already exist
-        if (roleRepository.existsByName(Role.OPERATOR) && roleRepository.existsByName(Role.EDITOR)) {
-            // If both roles exist, check if users already exist
-            if (userRepository.existsByUsername("operator") || userRepository.existsByUsername("editor")) {
-                return; // Exit if the users and roles already exist
-            }
-        } else {
-            // Create roles if they don't exist
+        if(!roleRepository.existsByName(Role.OPERATOR)){
             RoleDBO operatorRole = new RoleDBO(Role.OPERATOR);
-            RoleDBO editorRole = new RoleDBO(Role.EDITOR);
-
             roleRepository.save(operatorRole);
+        }
+
+        if(!roleRepository.existsByName(Role.EDITOR)){
+            RoleDBO editorRole = new RoleDBO(Role.EDITOR);
             roleRepository.save(editorRole);
+        }
+
+        if(!roleRepository.existsByName(Role.OLINGO)){
+            RoleDBO olingoRole = new RoleDBO(Role.OLINGO);
+            roleRepository.save(olingoRole);
         }
 
         // Check if users already exist
@@ -82,6 +82,12 @@ public class DBInitializer {
             editor.getRoles().add(roleRepository.findByName(Role.EDITOR)); // Assign role
             editor.getRoles().add(roleRepository.findByName(Role.OPERATOR)); // Also assign operator role
             userRepository.save(editor);
+        }
+
+        if (!userRepository.existsByUsername("olingo")) {
+            UserDBO olingo = new UserDBO("olingo", passwordEncoder.encode("olingo"));
+            olingo.getRoles().add(roleRepository.findByName(Role.OLINGO));
+            userRepository.save(olingo);
         }
     }
 }
