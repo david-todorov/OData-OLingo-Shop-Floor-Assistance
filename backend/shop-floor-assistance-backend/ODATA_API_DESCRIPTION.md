@@ -105,3 +105,14 @@ The following query options are supported for single entity requests:
 - `$select` - Retrieves the specified properties of the entity.
 - `$expand` - Expands the specified navigation properties of the entity.
 - `$format` - Retrieves the entity in the specified format (JSON or XML).
+
+# DISCLAIMER:
+### The current implementation of the API supports only 'first level' querying the navigation properties are accessible only through $expand query option.
+
+# Supported:
+- `GET /odata/Products(Id)?$expand=OrdersAsBefore,OrdersAsAfter` - Retrieves the product with the specified identifier and expands the OrdersAsBefore and OrdersAsAfter navigation properties.
+- `GET /odata/Orders?$expand=ProductAsBefore,ProductAsAfter,Equipments` - Retrieves all orders and expands the ProductAsBefore, ProductAsAfter, and Equipments navigation properties.
+
+# Not Supported:
+- `GET /odata/Products(id)/OrdersAsBefore(id)` - Retrieves the order with the specified identifier that is associated with the product.
+- `GET /odata/Orders(id)/Equipments(id)` - Retrieves the equipment with the specified identifier that is associated with the order.
