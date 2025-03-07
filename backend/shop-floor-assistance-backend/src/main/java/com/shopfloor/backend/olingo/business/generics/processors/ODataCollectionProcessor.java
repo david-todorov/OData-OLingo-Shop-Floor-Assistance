@@ -103,7 +103,7 @@ public class ODataCollectionProcessor<T> implements EntityCollectionProcessor {
         ExpandOption expandOption = uriInfo.getExpandOption();
         CountOption countOption = uriInfo.getCountOption();
 
-        // 2. Build filter specifications, reflects $filter and $orderby
+        // 2. Build filter specifications, reflects $filter and $orderby and $search
         Specification<T> specification = new ODataSpecificationBuilder<T>()
                 .addFilter(filterOption)
                 .addOrderBy(orderByOption)

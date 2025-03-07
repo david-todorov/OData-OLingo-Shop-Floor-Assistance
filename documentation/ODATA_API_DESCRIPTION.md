@@ -5,6 +5,8 @@
 The metadata document describes the structure of the API. It is available at the following URL:
 `/odata/$metadata`
 ---
+![Entity relationship diagram](diagrams/Entity_Relationship_Diagram.png)
+---
 ## Entities Sets
 - `Products` - The collection of products.
 - `Orders` - The collection of orders.

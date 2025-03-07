@@ -79,9 +79,10 @@ To run the backend and database applications using Docker Compose, follow these 
 ## API Documentation
 
 For detailed API documentation, refer to the following files:
-- [API_DESCRIPTION.md](backend/shop-floor-assistance-backend/API_DESCRIPTION.md) for the standard API.
-- [ODATA_API_DESCRIPTION.md](backend/shop-floor-assistance-backend/ODATA_API_DESCRIPTION.md) for the extended new OData API.
+- [API_DESCRIPTION.md](documentation/API_DESCRIPTION.md) for the standard API.
+- [ODATA_API_DESCRIPTION.md](documentation/ODATA_API_DESCRIPTION.md) for the extended new OData API.
+- [SOFTWARE_DESIGN.md](documentation/SOFTWARE_DESIGN.md) for the software design  and future development.
 
 ## Running the Backend
 
-For detailed instructions on running the backend, refer to the [DEPLOYMENT.md](backend/shop-floor-assistance-backend/DEPLOYMENT.md) file.
+For detailed instructions on running the backend, refer to the [DEPLOYMENT.md](documentation/DEPLOYMENT.md) file.

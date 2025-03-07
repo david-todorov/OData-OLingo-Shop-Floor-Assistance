@@ -1,6 +1,7 @@
 package com.shopfloor.backend;
 
 import com.shopfloor.backend.database.exceptions.*;
+import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -23,6 +24,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(JwtException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ProblemDetail handleJwtException(JwtException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        problemDetail.setProperty("description", "The JWT token is invalid or expired");
+        return problemDetail;
+    }
 
     /**
      * Handles ExecutionNotFoundException.
@@ -165,4 +174,17 @@ public class GlobalExceptionHandler {
         return problemDetail;
     }
 
+    /**
+     * Handles InvalidJwtTokenException.
+     *
+     * @param ex the exception
+     * @return a ProblemDetail object with UNAUTHORIZED status and a description
+     */
+    @ExceptionHandler(InvalidJwtTokenException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ProblemDetail handleInvalidJwtToken(InvalidJwtTokenException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, ex.getMessage());
+        problemDetail.setProperty("description", "The JWT token is invalid or expired");
+        return problemDetail;
+    }
 }

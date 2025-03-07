@@ -37,6 +37,9 @@ import java.util.List;
  */
 public class ODataEntityProcessor<T> implements EntityProcessor {
 
+    private final Long FAKE_CREATOR_ID = 1L;
+    private final Long FAKE_UPDATER_ID = 1L;
+
     /**
      * The maximum depth for entity expansion.
      */
@@ -96,7 +99,6 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
     @Transactional
     public void readEntity(ODataRequest oDataRequest, ODataResponse oDataResponse, UriInfo uriInfo, ContentType contentType)
             throws ODataApplicationException, ODataLibraryException {
-
         Entity toReturnEntity = null;
 
         // Extract EntitySet and EntityType from URI
@@ -153,7 +155,7 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
         Entity requestEntity = deserializeEntity(oDataRequest, contentType, edmEntityType);
 
         // Convert OData entity to DB entity and save
-        T dbo = service.createDBOFrom(requestEntity, 0L);
+        T dbo = service.createDBOFrom(requestEntity, this.FAKE_CREATOR_ID);
         dbo = repository.save(dbo);
 
         // Map the saved database entity back to OData entity
@@ -204,7 +206,7 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
         Entity requestEntity = deserializeEntity(oDataRequest, contentType, edmEntityType);
 
         // Update the database entity
-        dbEntity = service.updateDBOFrom(dbEntity, requestEntity, 999);
+        dbEntity = service.updateDBOFrom(dbEntity, requestEntity, this.FAKE_UPDATER_ID);
 
         // Map the updated database entity back to OData entity
         Entity updatedEntity = service.createEntityFrom(dbEntity, MAX_DEPTH);
@@ -393,3 +395,4 @@ public class ODataEntityProcessor<T> implements EntityProcessor {
     }
 
 }
+
