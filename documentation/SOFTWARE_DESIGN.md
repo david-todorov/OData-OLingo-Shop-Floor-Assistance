@@ -1,6 +1,37 @@
-![EntityCollectionProcessor Design](diagrams/EntityCollectionProcessor_Diagram.png)
+## Application Diagram
+![Package Diagram](diagrams/Application_Diagram.png)
 
+### This diagram illustrates the layered architecture of the OData-OLingo-Shop-Floor-Assistance, which is designed to expose OData services using Apache Olingo and follows a structured separation of concerns.
+
+### 1. Presentation Layer
+
+This layer handles OData service configuration and metadata exposure through:
+
+- `EdmProvider` – Defines the entity model structure for OData.
+
+- `ODataServletConfiguration` – Configures the OData service entry point.
+
+### 2. Business Layer
+
+Encapsulates the core business logic, separated into two parts:
+
+- `Generics` – Abstract processors for handling OData entity collections and single-entity operations.
+
+- `Implementations` – Contains concrete implementations for each domain entity (Product, Order, Equipment).
+
+### 3. Data Access Layer
+
+Responsible for persisting and retrieving data, structured as:
+
+- `Repositories` – `ProductODataRepository`, `OrderODataRepository`, and `EquipmentODataRepository` define the interface for data access.
+- `JPA entities` - (`ProductDBO`, `OrderDBO`, `EquipmentDBO`) using JPA annotations for ORM mapping.
+
+#### Key Elements:
+- 🟧 Orange Rectangle (Java Class / Interface): Represents a class or interface within the system.
+- 🟦 Blue or 🟩 Green Rectangle (Package): Represents a package or module within the system.
+- - -
 ## EntityCollectionProcessor Design:
+![EntityCollectionProcessor Design](diagrams/EntityCollectionProcessor_Diagram.png)
 
 ### Diagram Overview:
 The EntityCollectionProcessor diagram outlines the software architecture for processing collections of entities in our system. The design follows a modular approach, with clear distinctions between generic classes and specific implementations.
@@ -14,8 +45,8 @@ This design ensures that the EntityCollectionProcessor can be easily adapted to 
 
 - - -
 
+## EntityProcessor Design:
 ![EntityProcessor Design](diagrams/EntityProcessor_Diagram.png)
-## EntityProcessor Design
 
 ### Diagram Overview:
 
